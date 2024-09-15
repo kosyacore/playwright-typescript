@@ -10,6 +10,8 @@
     "moduleResolution": "node" /* Uses Node.js logic for traversing the directory tree to find the modules */,
     "resolveJsonModule": true /* Allows importing JSON files and accessing the data through 'import' */,
     "paths": {
+      "@playwrightApiConfig": ["playwright.api.config.ts"],
+      "@playwrightWebConfig": ["playwright.config.ts"],
       "@api/*": ["src/api/*"],
       "@pages/*": ["src/pages/*"],
       "@fixtures/*": ["src/fixtures/*"]
