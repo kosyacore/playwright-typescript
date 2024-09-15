@@ -9,5 +9,9 @@
     "esModuleInterop": true, /* Enhances interoperability and consistency in handling module imports and exports */
     "moduleResolution": "node", /* Uses Node.js logic for traversing the directory tree to find the modules */
     "resolveJsonModule": true, /* Allows importing JSON files and accessing the data through 'import' */
+    "paths": {
+      "@pages/*": ["src/pages/*"],
+      "@fixtures/*": ["src/fixtures/*"],
+    },
   }
 }
