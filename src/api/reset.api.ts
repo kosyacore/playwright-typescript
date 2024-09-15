@@ -1,10 +1,10 @@
 import { expect, request } from "@playwright/test";
-import playwrightConfig from "playwright.config";
+import playwrightConfig from "@playwrightApiConfig";
 
 /**
  * Reset API URL
  */
-const apiUrl = playwrightConfig.use.baseURL + "/api/reset";
+const apiUrl = playwrightConfig.use.baseURL + "/reset";
 
 /**
  * Resetting the database (deletion of all data)

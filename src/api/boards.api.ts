@@ -1,10 +1,10 @@
 import { expect, request } from "@playwright/test";
-import playwrightConfig from "playwright.config";
+import playwrightConfig from "@playwrightApiConfig";
 
 /**
  * Boards API URL
  */
-const apiUrl = playwrightConfig.use.baseURL + "/api/boards";
+const apiUrl = playwrightConfig.use.baseURL + "/boards";
 
 /**
  * Create a new board
