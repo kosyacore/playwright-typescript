@@ -12,24 +12,24 @@ const apiUrl = playwrightConfig.use.baseURL + "/api/boards";
  * @returns - response object
  */
 export const createBoardApi = async (boardName: string) => {
-    const requestContext = await request.newContext();
+  const requestContext = await request.newContext();
 
-    const response = await requestContext.post(apiUrl, {
-        data: { name: boardName },
-    });
+  const response = await requestContext.post(apiUrl, {
+    data: { name: boardName },
+  });
 
-    expect(response.status()).toBe(201);
+  expect(response.status()).toBe(201);
 
-    return response;
+  return response;
 };
 
 /**
  * Delete all boards
  */
 export const deleteBoardsApi = async () => {
-    const requestContext = await request.newContext();
+  const requestContext = await request.newContext();
 
-    const response = await requestContext.delete(apiUrl);
+  const response = await requestContext.delete(apiUrl);
 
-    expect(response.status()).toBe(204);
+  expect(response.status()).toBe(204);
 };
