@@ -26,4 +26,22 @@ export class MainPage extends BasePage {
         this.newBoardInput = page.getByTestId("first-board");
         this.boardItem = page.getByTestId("board-item");
     }
+
+    // Actions
+
+    /**
+     * Open the main page
+     */
+    async open() {
+        await this.page.goto("/");
+    }
+
+    /**
+     * Creates a board
+     * @param {string} boardName - name of the board
+     */
+    async createNewBoard(boardName: string) {
+        await this.newBoardInput.fill(boardName);
+        await this.newBoardInput.press("Enter");
+    }
 }
