@@ -9,7 +9,7 @@ import { format } from "date-fns";
 /**
  * Boards API URL
  */
-const url: string = playwrightConfig.use.baseURL + "boards";
+const url: string = playwrightConfig.use.baseURL + "/boards";
 
 /**
  * Test data

@@ -7,7 +7,7 @@ import { allure } from "allure-playwright";
 /**
  * Boards API URL
  */
-const url: string = playwrightConfig.use.baseURL + "boards";
+const url: string = playwrightConfig.use.baseURL + "/boards";
 
 /**
  * Test data
