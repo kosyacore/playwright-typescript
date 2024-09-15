@@ -1,0 +1,14 @@
+{
+  "name": "playwright-framework",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {},
+  "author": "Anton Klimko",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.47.1",
+    "@types/node": "^22.5.5",
+    "typescript": "^5.6.2"
+  }
+}
