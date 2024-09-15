@@ -26,6 +26,6 @@ export class SignupPage extends BasePage {
         this.emailInput = page.getByTestId("signup-email");
         this.passwordInput = page.getByTestId("signup-password");
         this.loginButton = page.getByTestId("signup-submit");
-        this.welcomeEmailCheckbox = page.locator("//input[@name='welcomeEmail");
+        this.welcomeEmailCheckbox = page.locator("//input[@name='welcomeEmail']");
     }
 }
