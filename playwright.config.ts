@@ -29,6 +29,8 @@ export default defineConfig({
       },
     ],
   ],
+  /* The output directory for files created during test execution. */
+  outputDir: "./report/test-results",
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
