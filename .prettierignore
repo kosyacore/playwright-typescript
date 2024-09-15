@@ -1,10 +1,12 @@
+# Project Specific
+.husky/
+
 # Playwright Specific
 node_modules/
 report/
 playwright-report
 summary.json
-.husky/
 
 # IDE - VSCode
 .vscode/*
-.ide/
+.idea/
