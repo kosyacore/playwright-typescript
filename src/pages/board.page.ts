@@ -79,6 +79,18 @@ export class BoardPage extends BasePage {
     await this.addListInput.press("Enter");
   }
 
+  /**
+   * Adds a new card to the list
+   * @param listIndex - index of the list
+   * @param cardName - name of the card
+   */
+  async addCardToList(listIndex: number, cardName: string) {
+    await this.boardTitle.click(); // defocus
+    await this.newCardButton.nth(listIndex).click();
+    await this.newCardTitleInput.fill(cardName);
+    await this.addCardButton.click();
+  }
+
   // Assertions
 
   /**
@@ -110,5 +122,17 @@ export class BoardPage extends BasePage {
     await expect(this.listName.nth(listIndex)).toHaveValue(listName);
     await expect(this.listOptionsButton.nth(listIndex)).toBeVisible();
     await expect(this.newCardButton.nth(listIndex)).toBeVisible();
+  }
+
+  /**
+   * Asserts that the card have been created in the board list
+   * @param listIndex - index of the list
+   * @param cardIndex - index of the card
+   * @param cardText - card text
+   */
+  async assertCardCreated(listIndex: number, cardIndex: number, cardText: string) {
+    await expect(this.cardCheckbox.nth(listIndex).nth(cardIndex)).toBeVisible();
+    await expect(this.cardText.nth(listIndex).nth(cardIndex)).toHaveText(cardText);
+    await expect(this.cardDueDate.nth(listIndex).nth(cardIndex)).toBeVisible();
   }
 }

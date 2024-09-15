@@ -50,7 +50,13 @@ export default [
       "playwright/expect-expect": [
         "error",
         {
-          assertFunctionNames: ["assertBoardCreated", "assertBoardDeleted", "assertBoardRenamed", "assertListCreated"],
+          assertFunctionNames: [
+            "assertBoardCreated",
+            "assertBoardDeleted",
+            "assertBoardRenamed",
+            "assertListCreated",
+            "assertCardCreated",
+          ],
         },
       ],
     },
