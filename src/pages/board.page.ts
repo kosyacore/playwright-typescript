@@ -1,5 +1,5 @@
 import {BasePage} from "./base.page";
-import {Locator, Page} from "@playwright/test";
+import {expect, Locator, Page} from "@playwright/test";
 
 /**
  * Board page
@@ -48,5 +48,17 @@ export class BoardPage extends BasePage {
         this.cardCheckbox = page.getByTestId("card-checkbox");
         this.cardText = page.getByTestId("card-text");
         this.cardDueDate = page.getByTestId("due-date");
+    }
+
+    // Assertions
+
+    /**
+     * Asserts that the new board have been created
+     * @param {string} boardName - Name of the board
+     */
+    async assertBoardCreated(boardName: string) {
+        await expect(this.boardTitle).toHaveValue(boardName);
+        await expect(this.addListInput).toBeVisible();
+        await expect(this.addListButton).toBeVisible();
     }
 }
