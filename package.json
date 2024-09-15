@@ -4,13 +4,17 @@
   "main": "index.js",
   "scripts": {
     "prepare": "husky",
+    "clear": "rimraf report",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "prettier": "prettier . --check",
     "prettier:fix": "prettier . --write",
     "test:api": "playwright test --config playwright.api.config.ts",
     "test:web": "playwright test --config playwright.config.ts",
-    "test:all": "npm run test:api ; npm run test:web"
+    "test:all": "npm run test:api ; npm run test:web",
+    "allure:clear": "rimraf report/allure-results",
+    "allure:generate": "allure generate report/allure-results",
+    "allure:serve": "allure serve report/allure-results"
   },
   "author": "Anton Klimko",
   "license": "ISC",
@@ -32,6 +36,7 @@
     "eslint-plugin-playwright": "^1.6.2",
     "husky": "^9.1.6",
     "prettier": "3.3.3",
+    "rimraf": "^6.0.1",
     "typescript": "^5.5.4",
     "typescript-eslint": "^8.5.0"
   }
