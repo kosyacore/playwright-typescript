@@ -53,6 +53,16 @@ export class BoardPage extends BasePage {
     // Actions
 
     /**
+     * Renames the board
+     * @param boardName - new name of the board
+     */
+    async renameBoard(boardName: string) {
+        await this.boardTitle.click();
+        await this.boardTitle.clear();
+        await this.boardTitle.fill(boardName);
+    }
+
+    /**
      * Deletes the current board
      */
     async deleteBoard() {
@@ -70,5 +80,15 @@ export class BoardPage extends BasePage {
         await expect(this.boardTitle).toHaveValue(boardName);
         await expect(this.addListInput).toBeVisible();
         await expect(this.addListButton).toBeVisible();
+    }
+
+    /**
+     * Asserts that the board name has been updated
+     * @param oldBoardName - old name of the board
+     * @param newBoardName - new name of the board
+     */
+    async assertBoardRenamed(oldBoardName: string, newBoardName: string) {
+        await expect(this.boardTitle).not.toHaveValue(oldBoardName);
+        await expect(this.boardTitle).toHaveValue(newBoardName);
     }
 }
