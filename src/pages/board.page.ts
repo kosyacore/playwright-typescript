@@ -50,6 +50,16 @@ export class BoardPage extends BasePage {
         this.cardDueDate = page.getByTestId("due-date");
     }
 
+    // Actions
+
+    /**
+     * Deletes the current board
+     */
+    async deleteBoard() {
+        await this.boardOptionsButton.click();
+        await this.deleteBoardButton.click();
+    }
+
     // Assertions
 
     /**

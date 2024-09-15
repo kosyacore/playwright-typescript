@@ -1,4 +1,4 @@
-import {Locator, Page} from "@playwright/test";
+import {expect, Locator, Page} from "@playwright/test";
 import {BasePage} from "./base.page";
 
 /**
@@ -43,5 +43,24 @@ export class MainPage extends BasePage {
     async createNewBoard(boardName: string) {
         await this.newBoardInput.fill(boardName);
         await this.newBoardInput.press("Enter");
+    }
+
+    /**
+     * Open a board
+     * @param {string} boardName - name of the board
+     */
+    async openBoard(boardName: string) {
+        await this.boardItem.filter({ hasText: boardName }).first().click();
+    }
+
+    // Assertions
+
+    /**
+     * Asserts that board have been deleted
+     */
+    async assertBoardDeleted() {
+        await expect(this.notificationMessage).toBeVisible();
+        await expect(this.notificationMessage).toHaveText("Board was deleted");
+        await expect(this.newBoardInput).toBeVisible();
     }
 }
