@@ -63,4 +63,15 @@ export class MainPage extends BasePage {
     await expect(this.notificationMessage).toHaveText("Board was deleted");
     await expect(this.newBoardInput).toBeVisible();
   }
+
+  /**
+   * Asserts that the user has logged in
+   * @param email - user email
+   */
+  async assertUserLoggedIn(email: string) {
+    await expect(this.loggedUserButton).toBeVisible();
+    await expect(this.loggedUserButton).toHaveText(email);
+    await expect(this.loginMenu).not.toBeVisible();
+    await expect(this.newBoardInput).toBeVisible();
+  }
 }

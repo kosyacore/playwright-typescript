@@ -28,4 +28,23 @@ export class SignupPage extends BasePage {
     this.loginButton = page.getByTestId("signup-submit");
     this.welcomeEmailCheckbox = page.locator("//input[@name='welcomeEmail']");
   }
+
+  // Actions
+
+  /**
+   * Signup with the specified user data
+   * @param email - user email
+   * @param password - user password
+   * @param sendEmail - optional parameter, send email to user after successful signup
+   */
+  async signUp(email: string, password: string, sendEmail?: boolean) {
+    await this.emailInput.fill(email);
+    await this.passwordInput.fill(password);
+
+    if (sendEmail) {
+      await this.welcomeEmailCheckbox.check();
+    }
+
+    await this.loginButton.click();
+  }
 }
