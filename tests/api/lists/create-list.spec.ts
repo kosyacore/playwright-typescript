@@ -24,7 +24,7 @@ let board: APIResponse;
  * SetUp
  */
 test.beforeEach(async ({ request }) => {
-  board = await request.post(playwrightConfig.use.baseURL + "boards", {
+  board = await request.post(playwrightConfig.use.baseURL + "/boards", {
     data: {
       name: boardName,
     },

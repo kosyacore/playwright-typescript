@@ -27,12 +27,12 @@ let list: APIResponse;
  * SetUp
  */
 test.beforeEach(async ({ request }) => {
-  board = await request.post(playwrightConfig.use.baseURL + "boards", {
+  board = await request.post(playwrightConfig.use.baseURL + "/boards", {
     data: {
       name: boardName,
     },
   });
-  list = await request.post(playwrightConfig.use.baseURL + "lists", {
+  list = await request.post(playwrightConfig.use.baseURL + "/lists", {
     data: {
       boardId: await board.json().then((body) => body.id),
       name: listName,
