@@ -10,3 +10,6 @@ summary.json
 # IDE - VSCode
 .vscode/*
 .idea/
+
+# Misc
+*.md
