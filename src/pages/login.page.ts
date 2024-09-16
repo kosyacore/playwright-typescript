@@ -28,4 +28,17 @@ export class LoginPage extends BasePage {
     this.loginButton = page.getByTestId("login-submit");
     this.signupButton = page.locator("//a[@href='/signup']");
   }
+
+  // Actions
+
+  /**
+   * Logging in with the specified user data
+   * @param email - user email
+   * @param password - user password
+   */
+  async login(email: string, password: string) {
+    await this.emailInput.fill(email);
+    await this.passwordInput.fill(password);
+    await this.loginButton.click();
+  }
 }
