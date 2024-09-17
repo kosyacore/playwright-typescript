@@ -15,6 +15,7 @@ export namespace Suite {
 
   /** Sub suite names. */
   export enum SubSuite {
+    ONBOARDING = "Onboarding",
     BOARDS = "Boards",
     LISTS = "Lists",
     CARDS = "Cards",

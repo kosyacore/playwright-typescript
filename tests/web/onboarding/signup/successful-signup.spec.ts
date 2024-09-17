@@ -3,6 +3,8 @@ import { faker } from "@faker-js/faker";
 import { test } from "@fixtures/pages-fixture";
 import { Severity } from "allure-js-commons";
 import { allure } from "allure-playwright";
+import { Tag } from "@consts/tag.namespace";
+import { Suite } from "@consts/suite.namespace";
 
 /**
  * Test data
@@ -18,18 +20,24 @@ const user = {
 test(
   "Should signup with correct data",
   {
-    tag: ["@web", "@onboarding", "@signup", "@smoke", "@regression"],
+    tag: [Tag.TestType.WEB, Tag.Feature.ONBOARDING, Tag.Feature.SIGNUP, Tag.TestSuite.SMOKE, Tag.TestSuite.REGRESSION],
   },
   async ({ mainPage, loginPage, signupPage }) => {
     // Allure: Suite
-    await allure.parentSuite("WEB");
-    await allure.suite("Core features");
-    await allure.subSuite("Onboarding");
+    await allure.parentSuite(Suite.ParentSuite.WEB);
+    await allure.suite(Suite.Suite.CORE_FEATURES);
+    await allure.subSuite(Suite.SubSuite.ONBOARDING);
 
     // Allure: Test details
     await allure.owner("Anton Klimko");
     await allure.description("This test attempts to signup");
-    await allure.tags("WEB", "Onboarding", "Signup", "Smoke", "Regression");
+    await allure.tags(
+      Tag.TestType.WEB,
+      Tag.Feature.ONBOARDING,
+      Tag.Feature.SIGNUP,
+      Tag.TestSuite.SMOKE,
+      Tag.TestSuite.REGRESSION,
+    );
     await allure.severity(Severity.CRITICAL);
 
     // Allure: Test parameters

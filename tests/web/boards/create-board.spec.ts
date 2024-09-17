@@ -3,30 +3,28 @@ import { test } from "@fixtures/pages-fixture";
 import { Severity } from "allure-js-commons";
 import { allure } from "allure-playwright";
 import { resetDatabaseApi } from "@api/reset.api";
+import { Tag } from "@consts/tag.namespace";
+import { Suite } from "@consts/suite.namespace";
 
-/**
- * Test data
- */
+/** Test data. */
 const boardName: string = faker.string.sample();
 
-/**
- * This test attempts to create a board
- */
+/** This test attempts to create a board. */
 test(
   "Should create a new board",
   {
-    tag: ["@web", "@boards", "@smoke", "@regression"],
+    tag: [Tag.TestType.WEB, Tag.Feature.BOARDS, Tag.TestSuite.SMOKE, Tag.TestSuite.REGRESSION],
   },
   async ({ mainPage, boardPage }) => {
     // Allure: Suite
-    await allure.parentSuite("WEB");
-    await allure.suite("Core features");
-    await allure.subSuite("Boards");
+    await allure.parentSuite(Suite.ParentSuite.WEB);
+    await allure.suite(Suite.Suite.CORE_FEATURES);
+    await allure.subSuite(Suite.SubSuite.BOARDS);
 
     // Allure: Test details
     await allure.owner("Anton Klimko");
     await allure.description("This test attempts to create a board");
-    await allure.tags("WEB", "Boards", "Smoke", "Regression");
+    await allure.tags(Tag.TestType.WEB, Tag.Feature.BOARDS, Tag.TestSuite.SMOKE, Tag.TestSuite.REGRESSION);
     await allure.severity(Severity.CRITICAL);
 
     // Allure: Test parameters
@@ -45,9 +43,7 @@ test(
   },
 );
 
-/**
- * TearDown
- */
+/** TearDown. */
 test.afterEach(async () => {
   await resetDatabaseApi();
 });

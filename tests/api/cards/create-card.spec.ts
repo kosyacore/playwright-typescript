@@ -5,6 +5,8 @@ import playwrightConfig from "@playwrightApiConfig";
 import { Severity } from "allure-js-commons";
 import { allure } from "allure-playwright";
 import { addDays, format } from "date-fns";
+import { Tag } from "@consts/tag.namespace";
+import { Suite } from "@consts/suite.namespace";
 
 /**
  * Cards API URL
@@ -47,18 +49,18 @@ test.beforeEach(async ({ request }) => {
 test(
   "Should create a new card in the board list",
   {
-    tag: ["@api", "@cards", "@smoke", "@regression"],
+    tag: [Tag.TestType.API, Tag.Feature.CARDS, Tag.TestSuite.SMOKE, Tag.TestSuite.REGRESSION],
   },
   async ({ request }) => {
     // Allure: Suite
-    await allure.parentSuite("API");
-    await allure.suite("Core features");
-    await allure.subSuite("Cards");
+    await allure.parentSuite(Suite.ParentSuite.API);
+    await allure.suite(Suite.Suite.CORE_FEATURES);
+    await allure.subSuite(Suite.SubSuite.CARDS);
 
     // Allure: Test details
     await allure.owner("Anton Klimko");
     await allure.description("This test attempts to create a card in the board list");
-    await allure.tags("API", "Cards", "Smoke", "Regression");
+    await allure.tags(Tag.TestType.API, Tag.Feature.CARDS, Tag.TestSuite.SMOKE, Tag.TestSuite.REGRESSION);
     await allure.severity(Severity.CRITICAL);
 
     // Allure: Test parameters

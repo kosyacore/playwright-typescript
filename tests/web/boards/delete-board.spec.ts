@@ -4,6 +4,8 @@ import { createBoardApi } from "@api/boards.api";
 import { allure } from "allure-playwright";
 import { Severity } from "allure-js-commons";
 import { resetDatabaseApi } from "@api/reset.api";
+import { Suite } from "@consts/suite.namespace";
+import { Tag } from "@consts/tag.namespace";
 
 /**
  * Test data
@@ -23,18 +25,18 @@ test.beforeEach(async () => {
 test(
   "Should delete a board",
   {
-    tag: ["@web", "@boards", "@regression"],
+    tag: [Tag.TestType.WEB, Tag.Feature.BOARDS, Tag.TestSuite.REGRESSION],
   },
   async ({ mainPage, boardPage }) => {
     // Allure: Suite
-    await allure.parentSuite("WEB");
-    await allure.suite("Core features");
-    await allure.subSuite("Boards");
+    await allure.parentSuite(Suite.ParentSuite.WEB);
+    await allure.suite(Suite.Suite.CORE_FEATURES);
+    await allure.subSuite(Suite.SubSuite.BOARDS);
 
     // Allure: Test details
     await allure.owner("Anton Klimko");
     await allure.description("This test attempts to delete a board");
-    await allure.tags("WEB", "Boards", "Regression");
+    await allure.tags(Tag.TestType.WEB, Tag.Feature.BOARDS, Tag.TestSuite.REGRESSION);
     await allure.severity(Severity.CRITICAL);
 
     // Allure: Test parameters

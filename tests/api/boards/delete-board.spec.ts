@@ -4,6 +4,8 @@ import { APIResponse, expect, test } from "@playwright/test";
 import playwrightConfig from "@playwrightApiConfig";
 import { Severity } from "allure-js-commons";
 import { allure } from "allure-playwright";
+import { Tag } from "@consts/tag.namespace";
+import { Suite } from "@consts/suite.namespace";
 
 /**
  * Boards API URL
@@ -21,18 +23,18 @@ const boardName: string = faker.string.sample();
 test(
   "Should delete a board",
   {
-    tag: ["@api", "@boards", "@regression"],
+    tag: [Tag.TestType.API, Tag.Feature.BOARDS, Tag.TestSuite.REGRESSION],
   },
   async ({ request }) => {
     // Allure: Suite
-    await allure.parentSuite("API");
-    await allure.suite("Core features");
-    await allure.subSuite("Boards");
+    await allure.parentSuite(Suite.ParentSuite.API);
+    await allure.suite(Suite.Suite.CORE_FEATURES);
+    await allure.subSuite(Suite.SubSuite.BOARDS);
 
     // Allure: Test details
     await allure.owner("Anton Klimko");
     await allure.description("This test attempts to delete a board");
-    await allure.tags("API", "Board", "Regression");
+    await allure.tags(Tag.TestType.API, Tag.Feature.BOARDS, Tag.TestSuite.REGRESSION);
     await allure.severity(Severity.CRITICAL);
 
     // Allure: Test parameters

@@ -4,6 +4,8 @@ import { Severity } from "allure-js-commons";
 import { allure } from "allure-playwright";
 import { createBoardApi } from "@api/boards.api";
 import { resetDatabaseApi } from "@api/reset.api";
+import { Tag } from "@consts/tag.namespace";
+import { Suite } from "@consts/suite.namespace";
 
 /**
  * Test data
@@ -24,18 +26,18 @@ test.beforeAll(async () => {
 test(
   "Should create a new list",
   {
-    tag: ["@web", "@lists", "@regression"],
+    tag: [Tag.TestType.WEB, Tag.Feature.LISTS, Tag.TestSuite.REGRESSION],
   },
   async ({ mainPage, boardPage }) => {
     // Allure: Suite
-    await allure.parentSuite("WEB");
-    await allure.suite("Core features");
-    await allure.subSuite("Lists");
+    await allure.parentSuite(Suite.ParentSuite.WEB);
+    await allure.suite(Suite.Suite.CORE_FEATURES);
+    await allure.subSuite(Suite.SubSuite.LISTS);
 
     // Allure: Test details
     await allure.owner("Anton Klimko");
     await allure.description("This test attempts to add a list to the board");
-    await allure.tags("UI", "Board", "Regression");
+    await allure.tags(Tag.TestType.WEB, Tag.Feature.LISTS, Tag.TestSuite.REGRESSION);
     await allure.severity(Severity.CRITICAL);
 
     // Allure: Test parameters
