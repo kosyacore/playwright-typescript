@@ -13,6 +13,7 @@
       "@playwrightApiConfig": ["playwright.api.config.ts"],
       "@playwrightWebConfig": ["playwright.config.ts"],
       "@api/*": ["src/api/*"],
+      "@consts/*": ["src/utils/consts/*"],
       "@pages/*": ["src/pages/*"],
       "@fixtures/*": ["src/fixtures/*"]
     }
