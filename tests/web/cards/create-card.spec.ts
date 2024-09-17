@@ -5,25 +5,24 @@ import { createBoardApi } from "@api/boards.api";
 import { createListApi } from "@api/lists.api";
 import { allure } from "allure-playwright";
 import { Severity } from "allure-js-commons";
+import { addDays, format } from "date-fns";
 
-/**
- * Test data
- */
-const boardName: string = faker.string.sample();
-const listName: string = faker.string.sample();
-const cardText: string = faker.string.sample();
+/** Test data. */
+const testData = {
+  boardName: faker.string.sample(),
+  listName: faker.string.sample(),
+  cardText: faker.string.sample(),
+  cardDueDate: format(addDays(new Date(), 3), "MMM dd yyyy"),
+  cardIndex: 0,
+};
 
-/**
- * SetUp
- */
+/** SetUp. */
 test.beforeAll(async () => {
-  const boardId: number = await (await createBoardApi(boardName)).json().then((body) => body.id);
-  await createListApi(boardId, listName, 0);
+  const boardId: number = await (await createBoardApi(testData.boardName)).json().then((body) => body.id);
+  await createListApi(boardId, testData.listName, 0);
 });
 
-/**
- *
- */
+/** This test attempts to create a new card in the board list. */
 test(
   "Should create a new list",
   {
@@ -42,29 +41,30 @@ test(
     await allure.severity(Severity.CRITICAL);
 
     // Allure: Test parameters
-    await allure.parameter("Board name", boardName);
-    await allure.parameter("List name", listName);
-    await allure.parameter("Card text", cardText);
+    await allure.parameter("Board name", testData.boardName);
+    await allure.parameter("List name", testData.listName);
+    await allure.parameter("Card text", testData.cardText);
 
     // Test steps
     await allure.step("Open the main page", async () => {
       await mainPage.open();
     });
-    await allure.step(`Open the board with name ${boardName}`, async () => {
-      await mainPage.openBoard(boardName);
+    await allure.step(`Open the board with name ${testData.boardName}`, async () => {
+      await mainPage.openBoard(testData.boardName);
     });
-    await allure.step(`Add card to the list with text ${cardText}`, async () => {
-      await boardPage.addCardToList(0, cardText);
-    });
+    await allure.step(
+      `Add a card with text ${testData.cardText} to the list with name ${testData.listName}`,
+      async () => {
+        await boardPage.addCardToList(testData.listName, testData.cardText);
+      },
+    );
     await allure.step("Assert card creation", async () => {
-      await boardPage.assertCardCreated(0, 0, cardText);
+      await boardPage.assertCardCreated(testData.listName, testData.cardIndex, testData.cardText, testData.cardDueDate);
     });
   },
 );
 
-/**
- * TearDown
- */
+/** TearDown. */
 test.afterAll(async () => {
   await resetDatabaseApi();
 });
